@@ -1,0 +1,144 @@
+<html>
+<head>
+	<title></title>
+</head>
+<meta charset='utf-8'/>
+<link rel="stylesheet" type="text/css" href="game.css">
+<script type="text/javascript" src='game.js'></script>
+<script type="text/javascript">
+function $(){
+	// $.trim=function(str,type){
+	// 		var type=type||'both';
+	// 		var newstr;
+	// 		if(type=='both'){
+	// 			newstr=str.replace(/^\s*|\s*$/g,'');
+	// 		}else if(type=='left'){
+	// 			newstr=str.replace(/^\s*/g,'');
+	// 		}else if(type=='right'){
+	// 			newstr=str.replace(/\s*$/g,'');
+	// 		}else if(type=='all'){//去所有空格
+	// 			newstr=str.replace(/\s*/g,'');
+	// 		}
+
+	// 	},
+	function aa(selector) {
+	if(typeof selector=='string'){
+		var selector=this.trim(selector);
+		if(/^[a-z][1-6a-z]{0,10}$/i.test(selector)){
+			var objs=document.getElementsByTagName(selector);
+			for(var i=0;i<objs.length;i++){
+				this[i]=objs[i];
+			}
+			this.length=objs.length;
+		}else if(selector.charAt(0)=='.'){
+			// var objs=this.getClass(selector.slice(1));
+			var objs=this.getClass(selector.substr(1));
+			this.length=objs.length;
+			for(var i=0;i<objs.length;i++){
+				this[i]=objs[i];
+			}
+		}else if(selector.charAt(0)=='#'){
+			var objs=document.getElementById(selector.substr(1));
+			this.length=1;
+			this[0]=objs;
+		}else if(/^<[a-z][1-6a-z]{1,10}>$/i.test(selector)){
+
+			var objs=document.createElement(selector.slice(1,-1));
+			this[0]=objs;
+			this.length=1;
+
+		}
+	}else if(typeof selector=='function'){
+		this.ready(selector);
+	}
+	//或者
+	// else if(typeof selector=='object'){
+	// 	this[0]=selector;
+	// 	this.length=1;
+	// }
+	else if(selector.nodeType==1){
+		this[0]=selector;
+		this.length=1;
+	}
+}
+	aa.prototype={
+		trim:function(str,type){
+			var type=type||'both';
+			var newstr;
+			if(type=='both'){
+				newstr=str.replace(/^\s*|\s*$/g,'');
+			}else if(type=='left'){
+				newstr=str.replace(/^\s*/g,'');
+			}else if(type=='right'){
+				newstr=str.replace(/\s*$/g,'');
+			}else if(type=='all'){//去所有空格
+				newstr=str.replace(/\s*/g,'');
+			}//middle 去除中间的空格
+			else if(type=='middle'){
+				// newstr=str.replace(/^\s*\s*$/g,'');
+				var arr=str.split('');
+				var kaishi=arr;
+				var m=0;
+				for(var i=0;i<arr.length;i++){
+					if(arr[i]==' '){m++;}
+					if(arr[i]!==' '){break;}
+				}
+				// var arr1=arr.reverse();
+				var xx=arr.length;
+				for(var i=arr.length-1;i>=0;i--){
+					if(arr[i]==" "){
+						xx--;
+					}
+					if(arr[i]!==" "){break;}
+				}
+				var s1=str.slice(0,m+1);
+				var s2=str.slice(xx);
+				newstr=str.replace(/\s*/g,'');
+				newstr=s1+newstr+s2;
+			}
+
+		},
+		css:function(obj){
+			this.each(function(index,currobj){
+				for(var i in obj){
+					currobj.style[i]=obj[i];
+				}
+			})
+			return this;
+		},
+		click:function(callback){
+			this.each(function(index,obj){
+				obj.onclick=function(){
+					callback.call(obj);
+				}
+			})
+			return this;
+		},
+		each:function(callback){
+			for(var i=0;i<this.length;i++){
+				callback(i,this[i]);//this[i]当前循环对象
+			}
+		}
+
+	}
+}
+
+</script>
+<body>
+	<div id="start">开始</div>
+<div class='panel'>
+
+	<div class="die">
+		<span>生命：</span><span></span>
+	</div>
+	<div class="sore">
+		<span>分数：</span><span>0</span>
+	</div>
+	<select>
+		<option>1</option>
+		<option>2</option>
+		<option>3</option>
+	</select>
+</div>
+</body>
+</html>

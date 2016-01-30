@@ -1,0 +1,89 @@
+html,body{
+	width: 100%;height: 100%;
+	overflow: hidden;
+	/*background: #000;*/
+	font-family: '微软雅黑';
+}
+@font-face {
+	font-family: 'ss';
+	src:url(Fzpc-ls_0.ttf);
+}
+audio,video{
+opacity: 0;
+}
+body{
+	background: url(bj.jpg) no-repeat center;
+	background-size:100% auto;
+}
+/*#start{*/
+	/*width: 100px;*/
+	/*height: 50px;*/
+	/*border-radius: 50%;*/
+	/*background: orange;*/
+	/*text-align: center;line-height: 50px;*/
+/*}*/
+@keyframes scale {
+	0%{
+		transform: scale(0.8,0.8);
+	}
+	100%{
+		transform: scale(1.2,1.2);
+	}
+}
+@keyframes scale1 {
+	0%{
+		transform: translate(-100px,-100px) rotate(180deg);
+	}
+	100%{
+		transform: translate(-500px,-100px) rotate(0deg);
+	}
+}
+#start{
+
+	cursor: pointer;
+	animation:  scale 1s linear  alternate  infinite;
+	font-family: 'ss';
+	width: 200px;
+	height: 60px;
+	border-radius: 5px;
+	background: #363944;
+	color: #fff;
+	position: absolute;
+	text-align: center;
+	line-height: 60px;
+	font-size: 30px;
+	left: 0;right:0;bottom: 200px;margin: auto;
+	/*text-align: center;line-height: 50px;*/
+}
+.panel{
+	width: 100%;
+	height: 40px;
+	position: fixed;
+	bottom: 0;right: 0;
+	background: #D0E1F1;
+	z-index: 2;
+}
+.panel .die{
+	width: 40%;
+	float: left;
+	text-align: center;
+	line-height: 40px;
+	border-right:1px solid #fff;
+	height: 100%; 
+}
+.panel .sore{
+	width: 30%;
+	float: left;
+	text-align: center;line-height: 40px;border-right:1px solid #fff;
+}
+select{
+	float: left;
+	width: 10%;
+	height: 40px;
+	/*margin-top: 10px;*/
+}
+.guanqia{
+	float: left;
+	width: 15%;
+	height: 40px;text-align: center;line-height: 40px
+}
